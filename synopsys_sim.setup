@@ -1,0 +1,14 @@
+--VCS setup file
+-- <- means comment
+-- space will be ignored
+--Maping logical library to physical library
+
+--WORK > DEFAULT
+--DEFAULT : $TB_HOME/work_dir
+
+--Library for DUT
+--[LOGICAL] : [PHYSICAL]
+CMP_RTL : $TB_HOME/outfeed_cmp_rtl/cmp_rtl
+CMP_STUB : $TB_HOME/outfeed_cmp_stub/cmp_stub
+CMP_DV : $TB_HOME/outfeed_cmp_dv/cmp_dv
+
