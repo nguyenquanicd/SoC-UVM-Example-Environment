@@ -13,7 +13,7 @@ usage:
 	echo "make compile comp_args=\"+define+<macro_name>=<value>\"";
 	echo "";
 	echo "Example:";
-	echo "make compile comp_args=\"+define+ADDR_WIDTH=64 +define+DATA_WIDTH=64\"";
+	echo "make compile comp_args=\"+define+AHB_ADDR_WIDTH=64 +define+AHB_DATA_WIDTH=64\"";
 	echo "";
 	echo "To simulate a test:";
 	echo "make simulate_<test> uvm_verbosity=<VERBOSITY_LEVEL>";

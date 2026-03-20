@@ -1,0 +1,38 @@
+*Note: SNPS vcs & verdi license is required
+
+//TB Directory
+├── filelist_dv.f (DV filelist)
+├── filelist_rtl.f (RTL filelist)
+├── run.csh (run script)
+├── seq
+│   ├── FILES_test_seq.sv
+│   ├── soc_base_vseq.sv
+│   └── soc_seq_pkg.sv
+├── SourceMe.csh (set env variables)
+├── synopsys_sim.setup (set up different lib for RTL & DV)
+├── tb
+│   ├── tb_macro.sv (macros for testbench)
+│   └── tb_top.sv (testbench top)
+├── test
+│   ├── soc_base_test.sv
+│   └── soc_test_pkg.sv
+└── vip (open source VIP)
+    ├── ahb_vip
+    ├── apb_vip
+    ├── axi_vip
+    ├── i2s_vip
+    ├── i3c_vip
+    ├── jtag_vip
+    ├── spi_vip
+    └── uart_vip
+
+//How to run
+1. run.csh -compile rtl +define+<user_option> (run 1 time whenever RTL change)
+Example: 
+run.csh -compile rtl +define+SYNTHESIS
+2. run.csh -compile dv +define+<user_option> (run 1 time whenever DV change)
+Example:
+run.csh -compile dv +define+DMA_STUB
+3. run.csh -test <user_seq_name> -run_dir <user_outfeed> -fsdb (waveform option) -seed (random seed option) +<user_runtime_option>
+Example:
+run.csh -test soc_base_vseq_c -run_dir outfeed_base_vseq -fsdb -seed 1234 +DMA_APB_VIP_ACTIVE

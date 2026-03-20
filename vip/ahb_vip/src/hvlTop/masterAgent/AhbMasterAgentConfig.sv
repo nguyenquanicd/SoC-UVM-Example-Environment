@@ -8,20 +8,20 @@ class AhbMasterAgentConfig extends uvm_object;
 
   bit hasCoverage;
 
-  bit [ADDR_WIDTH-1:0]haddr;
+  bit [AHB_ADDR_WIDTH-1:0]haddr;
 
-  bit [MEMORY_WIDTH-1:0]masterMemory[(SLAVE_MEMORY_SIZE+SLAVE_MEMORY_GAP)*NO_OF_SLAVES:0];
+  bit [AHB_MEMORY_WIDTH-1:0]masterMemory[(AHB_SLAVE_MEMORY_SIZE+AHB_SLAVE_MEMORY_GAP)*AHB_NO_OF_SLAVES:0];
 
-  bit [ADDR_WIDTH-1:0]masterMinimumAddressRangeArray[int];
+  bit [AHB_ADDR_WIDTH-1:0]masterMinimumAddressRangeArray[int];
 
-  bit [ADDR_WIDTH-1:0]masterMaximumAddressRangeArray[int];
+  bit [AHB_ADDR_WIDTH-1:0]masterMaximumAddressRangeArray[int];
 
   int noOfWaitStates;
 
   extern function new(string name = "AhbMasterAgentConfig");
   extern function void do_print(uvm_printer printer);
-  extern function void masterMinimumAddressRange(int slaveNumber, bit [ADDR_WIDTH-1:0]slaveMinimumAddressRange);
-  extern function void masterMaximumAddressRange(int slaveNumber, bit [ADDR_WIDTH-1:0]slaveMaximumAddressRange);
+  extern function void masterMinimumAddressRange(int slaveNumber, bit [AHB_ADDR_WIDTH-1:0]slaveMinimumAddressRange);
+  extern function void masterMaximumAddressRange(int slaveNumber, bit [AHB_ADDR_WIDTH-1:0]slaveMaximumAddressRange);
 
 endclass : AhbMasterAgentConfig
 
@@ -44,11 +44,11 @@ function void AhbMasterAgentConfig::do_print(uvm_printer printer);
 
 endfunction : do_print
 
-function void AhbMasterAgentConfig::masterMaximumAddressRange(int slaveNumber, bit [ADDR_WIDTH-1:0]slaveMaximumAddressRange);
+function void AhbMasterAgentConfig::masterMaximumAddressRange(int slaveNumber, bit [AHB_ADDR_WIDTH-1:0]slaveMaximumAddressRange);
   masterMaximumAddressRangeArray[slaveNumber] = slaveMaximumAddressRange;
 endfunction : masterMaximumAddressRange
 
-function void AhbMasterAgentConfig::masterMinimumAddressRange(int slaveNumber, bit [ADDR_WIDTH-1:0]slaveMinimumAddressRange);
+function void AhbMasterAgentConfig::masterMinimumAddressRange(int slaveNumber, bit [AHB_ADDR_WIDTH-1:0]slaveMinimumAddressRange);
   masterMinimumAddressRangeArray[slaveNumber] = slaveMinimumAddressRange;
 endfunction : masterMinimumAddressRange
 

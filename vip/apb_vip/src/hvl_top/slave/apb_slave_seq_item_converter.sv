@@ -113,9 +113,9 @@ function void apb_slave_seq_item_converter::do_print(uvm_printer printer);
   
   printer.print_field("pselx",apb_st.pselx,NO_OF_SLAVES,UVM_BIN);
   printer.print_field("pwrite",apb_st.pwrite,1,UVM_BIN);
-  printer.print_field($sformatf("pwdata"),apb_st.pwdata,DATA_WIDTH,UVM_HEX);
+  printer.print_field($sformatf("pwdata"),apb_st.pwdata,APB_DATA_WIDTH,UVM_HEX);
   printer.print_field("no_of_wait_states",apb_st.no_of_wait_states,UVM_DEC);
-  printer.print_field($sformatf("prdata"),apb_st.prdata,DATA_WIDTH,UVM_HEX);
+  printer.print_field($sformatf("prdata"),apb_st.prdata,APB_DATA_WIDTH,UVM_HEX);
   printer.print_field("pslverr",apb_st.pslverr,1,UVM_BIN);
 
 endfunction : do_print

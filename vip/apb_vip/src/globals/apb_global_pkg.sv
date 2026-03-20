@@ -15,31 +15,31 @@ package apb_global_pkg;
   //Used to set the master agent either active or passive
   parameter bit MASTER_AGENT_ACTIVE = 1;
 
-  //Parameter : SLAVE_AGENT_ACTIVE
+  //Parameter : APB_SLAVE_AGENT_ACTIVE
   //Used to set the slave agent either active or passive
-  parameter bit SLAVE_AGENT_ACTIVE = 1;
+  parameter bit APB_SLAVE_AGENT_ACTIVE = 1;
 
   //Parameter : ADDRESS_WIDTH
   //Used to set the address width to the address bus
   //Maximum Value is 32
   parameter int ADDRESS_WIDTH = 32;
 
-  //Parameter : DATA_WIDTH
+  //Parameter : APB_DATA_WIDTH
   //Used to set the data width 
   //Maximum Value is 8
-  parameter int DATA_WIDTH = 32;
+  parameter int APB_DATA_WIDTH = 32;
 
-  //Parameter : SLAVE_MEMORY_SIZE
+  //Parameter : APB_SLAVE_MEMORY_SIZE
   //Sets the memory size of the slave in KB
-  parameter int SLAVE_MEMORY_SIZE = 12;
+  parameter int APB_SLAVE_MEMORY_SIZE = 12;
 
-  //Parameter : SLAVE_MEMORY_GAP
+  //Parameter : APB_SLAVE_MEMORY_GAP
   //Sets the memory gap size of the slave
-  parameter int SLAVE_MEMORY_GAP = 5;
+  parameter int APB_SLAVE_MEMORY_GAP = 5;
 
-  //Parameter : MEMORY_WIDTH
+  //Parameter : APB_MEMORY_WIDTH
   //Sets the width it can store in each loaction
-  parameter int MEMORY_WIDTH = 8;
+  parameter int APB_MEMORY_WIDTH = 8;
 
   //-------------------------------------------------------
   // Enum : transfer_size_e
@@ -141,10 +141,10 @@ package apb_global_pkg;
     bit pslverr;
     bit [2:0]pprot;
     bit [NO_OF_SLAVES-1:0]pselx;
-    bit [(DATA_WIDTH/8)-1:0]pstrb;
-    bit [DATA_WIDTH-1:0]prdata;
+    bit [(APB_DATA_WIDTH/8)-1:0]pstrb;
+    bit [APB_DATA_WIDTH-1:0]prdata;
     bit [ADDRESS_WIDTH-1:0]paddr; 
-    bit [DATA_WIDTH-1:0]pwdata;
+    bit [APB_DATA_WIDTH-1:0]pwdata;
     int no_of_wait_states;
   }apb_transfer_char_s;
   

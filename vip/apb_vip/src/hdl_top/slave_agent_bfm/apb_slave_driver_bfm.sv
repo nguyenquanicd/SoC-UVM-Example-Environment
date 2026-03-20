@@ -17,12 +17,12 @@ interface apb_slave_driver_bfm (input bit pclk,
                                input logic penable,
                                input logic [ADDRESS_WIDTH-1:0]paddr,
                                input logic pwrite,
-                               input logic [(DATA_WIDTH/8)-1:0]pstrb, 
-                               input logic [DATA_WIDTH-1:0]pwdata,
+                               input logic [(APB_DATA_WIDTH/8)-1:0]pstrb, 
+                               input logic [APB_DATA_WIDTH-1:0]pwdata,
                                output bit pslverr,
                                output bit pready,
                                input bit [2:0]pprot,
-                               output logic [DATA_WIDTH-1:0]prdata
+                               output logic [APB_DATA_WIDTH-1:0]prdata
                                );
 
   //-------------------------------------------------------

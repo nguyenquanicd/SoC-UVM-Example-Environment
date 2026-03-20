@@ -6,8 +6,8 @@ import AhbGlobalPackage::*;
 interface AhbMasterAssertion (
   input                      hclk,
   input                      hresetn,
-  input     [ADDR_WIDTH-1:0] haddr,
-  input     [DATA_WIDTH-1:0] hwdata,
+  input     [AHB_ADDR_WIDTH-1:0] haddr,
+  input     [AHB_DATA_WIDTH-1:0] hwdata,
   input                [2:0] hsize,
   input                [2:0] hburst,
   input                [1:0] htrans,

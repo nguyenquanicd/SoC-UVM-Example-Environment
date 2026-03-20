@@ -15,14 +15,14 @@ interface apb_master_driver_bfm (input  bit   pclk,
                                  input  bit   preset_n,
                                  input  bit   pready,
                                  input  bit   pslverr,
-                                 input  logic [DATA_WIDTH-1:0]prdata,
+                                 input  logic [APB_DATA_WIDTH-1:0]prdata,
                                  output logic [2:0]pprot,
                                  output logic penable,
                                  output logic pwrite,
                                  output logic [ADDRESS_WIDTH-1:0]paddr,
                                  output logic [NO_OF_SLAVES-1:0]pselx,
-                                 output logic [DATA_WIDTH-1:0]pwdata,
-                                 output logic [(DATA_WIDTH/8)-1:0]pstrb
+                                 output logic [APB_DATA_WIDTH-1:0]pwdata,
+                                 output logic [(APB_DATA_WIDTH/8)-1:0]pstrb
                                 );
 
   //-------------------------------------------------------

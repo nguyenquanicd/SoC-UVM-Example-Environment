@@ -3,7 +3,7 @@
 
 class AhbSlaveSequence extends AhbSlaveBaseSequence;
   `uvm_object_utils(AhbSlaveSequence)
-   rand bit [DATA_WIDTH-1:0] hrdataSeq[$:2**LENGTH];
+   rand bit [AHB_DATA_WIDTH-1:0] hrdataSeq[$:2**AHB_LENGTH];
    rand bit hreadyoutSeq;
    rand bit hexokaySeq;
    rand bit choosePacketDataSeq;

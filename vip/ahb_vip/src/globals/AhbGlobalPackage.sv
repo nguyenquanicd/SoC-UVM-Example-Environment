@@ -3,29 +3,29 @@
 
 package AhbGlobalPackage;
 
-  parameter int NO_OF_MASTERS = 1;
+  parameter int AHB_NO_OF_MASTERS = 1;
 
-  parameter int NO_OF_SLAVES = 1;
+  parameter int AHB_NO_OF_SLAVES = 1;
 
-  parameter bit MASTER_AGENT_ACTIVE = 1;
+  parameter bit AHB_AHB_MASTER_AGENT_ACTIVE = 1;
 
-  parameter bit SLAVE_AGENT_ACTIVE = 1;
+  parameter bit AHB_SLAVE_AGENT_ACTIVE = 1;
 
-  parameter int ADDR_WIDTH = 32;
+  parameter int AHB_ADDR_WIDTH = 32;
 
-  parameter int DATA_WIDTH = 32;
+  parameter int AHB_DATA_WIDTH = 32;
 
-  parameter int HMASTER_WIDTH = (NO_OF_MASTERS == 1) ? 1 : $clog2(NO_OF_MASTERS);
+  parameter int HMASTER_WIDTH = (AHB_NO_OF_MASTERS == 1) ? 1 : $clog2(AHB_NO_OF_MASTERS);
 
   parameter int HPROT_WIDTH = 4;
 
-  parameter int SLAVE_MEMORY_SIZE = 12;
+  parameter int AHB_SLAVE_MEMORY_SIZE = 12;
 
-  parameter int SLAVE_MEMORY_GAP = 5;
+  parameter int AHB_SLAVE_MEMORY_GAP = 5;
 
-  parameter int MEMORY_WIDTH = 8;
+  parameter int AHB_MEMORY_WIDTH = 8;
 
-  parameter int LENGTH = 4;
+  parameter int AHB_LENGTH = 4;
 
   typedef enum logic [2:0] {
     SINGLE      = 3'b000,
@@ -80,8 +80,8 @@ typedef enum logic [2:0] {
 	}ahbOperationEnum;
 
 typedef struct {
-logic  [ADDR_WIDTH-1:0]  haddr;          // Address of the transfer
-logic  [NO_OF_SLAVES-1:0] hselx;        // slave select 
+logic  [AHB_ADDR_WIDTH-1:0]  haddr;          // Address of the transfer
+logic  [AHB_NO_OF_SLAVES-1:0] hselx;        // slave select 
 ahbBurstEnum            hburst;         // Burst type
 logic                   hmastlock;      // Locked sequence indicator
 ahbProtectionEnum       hprot;          // Protection type
@@ -90,23 +90,23 @@ logic                   hnonsec;        // Secure or non-secure indicator
 logic                   hexcl;          // Exclusive access sequence
 logic [HMASTER_WIDTH-1:0] hmaster;     // Master ID
 ahbTransferEnum          htrans;        // Transfer type
-logic [2**LENGTH:0] [DATA_WIDTH-1:0]   hwdata;         // Write data bus
-logic [2**LENGTH:0] [(DATA_WIDTH/8)-1:0] hwstrb;     // Write strobes
+logic [2**AHB_LENGTH:0] [AHB_DATA_WIDTH-1:0]   hwdata;         // Write data bus
+logic [2**AHB_LENGTH:0] [(AHB_DATA_WIDTH/8)-1:0] hwstrb;     // Write strobes
 ahbOperationEnum        hwrite;         // Write or read indicator
-logic [2**LENGTH:0] [DATA_WIDTH-1:0]  hrdata;         // Read data bus
+logic [2**AHB_LENGTH:0] [AHB_DATA_WIDTH-1:0]  hrdata;         // Read data bus
 logic                   hreadyout;      // Transfer completion for subordinate
 ahbRespEnum             hresp;          // Response status
 logic                   hexokay;        // Exclusive OKAY status
 logic                   hready;         // Combined transfer completion
 int                     noOfWaitStates;
-bit [2**LENGTH:0] busyControl;          //indicating When Busy Transfer must be introduced
+bit [2**AHB_LENGTH:0] busyControl;          //indicating When Busy Transfer must be introduced
   } ahbTransferCharStruct;
 
  
   typedef struct{
-    logic [ADDR_WIDTH-1:0] haddr;          // Address of the transfer
-     bit [ADDR_WIDTH-1:0]minimumAddress;
-     bit [ADDR_WIDTH-1:0]maximumAddress; 
+    logic [AHB_ADDR_WIDTH-1:0] haddr;          // Address of the transfer
+     bit [AHB_ADDR_WIDTH-1:0]minimumAddress;
+     bit [AHB_ADDR_WIDTH-1:0]maximumAddress; 
    // int slave_id;
     int noOfWaitStates;
   } ahbTransferConfigStruct ;

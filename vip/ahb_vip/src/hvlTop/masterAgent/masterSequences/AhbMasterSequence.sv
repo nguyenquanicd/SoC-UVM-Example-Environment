@@ -6,8 +6,8 @@ class AhbMasterSequence extends AhbMasterBaseSequence;
  
   AhbMasterTransaction req;
   
-  rand bit [ADDR_WIDTH-1:0] haddrSeq;
-  rand bit [NO_OF_SLAVES-1:0] hselxSeq;
+  rand bit [AHB_ADDR_WIDTH-1:0] haddrSeq;
+  rand bit [AHB_NO_OF_SLAVES-1:0] hselxSeq;
   rand ahbBurstEnum hburstSeq;
   rand bit hmastlockSeq;
   rand ahbProtectionEnum hprotSeq;
@@ -16,8 +16,8 @@ class AhbMasterSequence extends AhbMasterBaseSequence;
   rand bit hexclSeq;
   rand bit [HMASTER_WIDTH-1:0] hmasterSeq;
   rand ahbTransferEnum htransSeq;
-  rand bit [DATA_WIDTH-1:0] hwdataSeq[$:2**LENGTH];
-  rand bit [(DATA_WIDTH/8)-1:0] hwstrbSeq[$:2**LENGTH];
+  rand bit [AHB_DATA_WIDTH-1:0] hwdataSeq[$:2**AHB_LENGTH];
+  rand bit [(AHB_DATA_WIDTH/8)-1:0] hwstrbSeq[$:2**AHB_LENGTH];
   rand ahbOperationEnum hwriteSeq;
   rand bit hexokaySeq;
   rand bit busyControlSeq[];

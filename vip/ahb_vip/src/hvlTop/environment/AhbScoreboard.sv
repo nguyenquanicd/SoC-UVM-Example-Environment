@@ -52,8 +52,8 @@ endclass : AhbScoreboard
 
 function AhbScoreboard::new(string name = "AhbScoreboard",uvm_component parent = null);
   super.new(name, parent);
-  ahbMasterAnalysisFifo = new[NO_OF_MASTERS];
-  ahbSlaveAnalysisFifo = new[NO_OF_SLAVES];
+  ahbMasterAnalysisFifo = new[AHB_NO_OF_MASTERS];
+  ahbSlaveAnalysisFifo = new[AHB_NO_OF_SLAVES];
 
   foreach(ahbMasterAnalysisFifo[i]) begin
     ahbMasterAnalysisFifo[i] = new($sformatf("ahbMasterAnalysisFifo[%0d]",i),this);
@@ -75,13 +75,13 @@ task AhbScoreboard::run_phase(uvm_phase phase);
   super.run_phase(phase);
 
   forever begin
-    for(int j = 0; j < NO_OF_MASTERS; j++) begin
+    for(int j = 0; j < AHB_NO_OF_MASTERS; j++) begin
       ahbMasterAnalysisFifo[j].get(ahbMasterTransaction);
       ahbMasterTransactionCount++;
       `uvm_info(get_type_name(), $sformatf("after calling master's analysis fifo get method"), UVM_HIGH);
     end
 
-    for(int i = 0; i < NO_OF_SLAVES; i++) begin
+    for(int i = 0; i < AHB_NO_OF_SLAVES; i++) begin
       ahbSlaveAnalysisFifo[i].get(ahbSlaveTransaction);
       ahbSlaveTransactionCount++;
       `uvm_info(get_type_name(), $sformatf("after calling slave's analysis fifo get method"), UVM_HIGH);

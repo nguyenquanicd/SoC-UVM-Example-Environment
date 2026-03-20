@@ -58,7 +58,7 @@ class apb_master_coverage extends uvm_subscriber #(apb_master_tx);
   //To check whether the apb has used strobe for all 4 lanes or not
   PSTRB_CP : coverpoint packet.pstrb{
     option.comment = "apb strobe data";
-    bins APB_PSTRB[] = {[0:2**(DATA_WIDTH/8)-1]};
+    bins APB_PSTRB[] = {[0:2**(APB_DATA_WIDTH/8)-1]};
   }
 
   PPROT_CP : coverpoint packet.pprot{

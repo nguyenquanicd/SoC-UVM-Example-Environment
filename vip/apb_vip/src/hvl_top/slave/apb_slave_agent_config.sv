@@ -39,14 +39,14 @@ class apb_slave_agent_config extends uvm_object;
   
   //Variable: paddr
   //Used to indicate the slave address
-  bit [DATA_WIDTH-1:0]paddr;
+  bit [APB_DATA_WIDTH-1:0]paddr;
   
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
   extern function new(string name = "apb_slave_agent_config");
   extern function void do_print(uvm_printer printer);
-  extern virtual task slave_memory_task(bit [ADDRESS_WIDTH-1:0]slave_address, bit [DATA_WIDTH-1:0]data); 
+  extern virtual task slave_memory_task(bit [ADDRESS_WIDTH-1:0]slave_address, bit [APB_DATA_WIDTH-1:0]data); 
 
 endclass : apb_slave_agent_config
 
@@ -81,9 +81,9 @@ endfunction : do_print
 // 
 // Parameters :
 //  slave_address   - bit [ADDRESS_WIDTH-1:0]
-//  data            - bit [DATA_WIDTH-1:0]
+//  data            - bit [APB_DATA_WIDTH-1:0]
 //--------------------------------------------------------------------------------------------
-task apb_slave_agent_config::slave_memory_task(bit [ADDRESS_WIDTH-1:0]slave_address, bit [DATA_WIDTH-1:0]data);
+task apb_slave_agent_config::slave_memory_task(bit [ADDRESS_WIDTH-1:0]slave_address, bit [APB_DATA_WIDTH-1:0]data);
   slave_memory[slave_address] = data;
 endtask : slave_memory_task
 

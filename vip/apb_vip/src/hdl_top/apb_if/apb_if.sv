@@ -30,11 +30,11 @@ interface apb_if (input pclk, input preset_n);
 
   //Variable : pstrb
   //Used to transfer the data to pwdata bus
-  logic [(DATA_WIDTH/8)-1:0]pstrb; 
+  logic [(APB_DATA_WIDTH/8)-1:0]pstrb; 
   
   //Variable : pwdata
   //Used to store the wdata
-  logic [DATA_WIDTH-1:0]pwdata;
+  logic [APB_DATA_WIDTH-1:0]pwdata;
 
   //Variable : pready
   //Used to extend the transfer
@@ -48,7 +48,7 @@ interface apb_if (input pclk, input preset_n);
   //Declared as wire so that it can be multiply driven
   //Questa-sim gives a warning for multiply driven signals
   //Cadence gives compilation error
-  logic [DATA_WIDTH-1:0]prdata;
+  logic [APB_DATA_WIDTH-1:0]prdata;
 
   //Variable : pslverr
   //Goes high when a transfer fails

@@ -163,7 +163,7 @@ endtask : run_phase
 task apb_slave_driver_proxy::task_write(inout apb_transfer_char_s struct_packet);
   
   `uvm_info("DEBUG_NA", $sformatf("task_write"), UVM_HIGH); 
-  for(int i=0; i<(DATA_WIDTH/8); i++)begin
+  for(int i=0; i<(APB_DATA_WIDTH/8); i++)begin
     `uvm_info("DEBUG_NA", $sformatf("task_write inside for loop :: %0d", i), UVM_HIGH);
     `uvm_info("DEBUG_NA", $sformatf("task_write inside for loop pstrb = %0b", struct_packet.pstrb[i]), UVM_HIGH);
     if(struct_packet.pstrb[i] == 1)begin
@@ -187,7 +187,7 @@ task apb_slave_driver_proxy::task_read(inout apb_transfer_char_s struct_packet);
   bit [7:0]local_rdata;
 
   `uvm_info("DEBUG_NA", $sformatf("task_read"), UVM_HIGH);
-  for(int i=0; i<(DATA_WIDTH/8); i++)begin
+  for(int i=0; i<(APB_DATA_WIDTH/8); i++)begin
     if(apb_slave_agent_cfg_h.slave_memory.exists(struct_packet.paddr+i))begin
       struct_packet.prdata[8*i+7 -: 8] = apb_slave_agent_cfg_h.slave_memory[struct_packet.paddr + i];
       memory_exist = 1;

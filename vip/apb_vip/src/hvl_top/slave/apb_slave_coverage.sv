@@ -38,12 +38,12 @@ class apb_slave_coverage extends uvm_subscriber#(apb_slave_tx);
 
   PWDATA_CP : coverpoint packet.pwdata {
     option.comment = "write data range";
-    bins WDATA_BIT[] = {[0:DATA_WIDTH]};
+    bins WDATA_BIT[] = {[0:APB_DATA_WIDTH]};
   }
   
   PRDATA_CP : coverpoint packet.prdata {
     option.comment = "read data range ";  
-    bins RDATA_BIT[]  = {[0:DATA_WIDTH]};
+    bins RDATA_BIT[]  = {[0:APB_DATA_WIDTH]};
   }
 
   PSLVERR_CP : coverpoint slave_error_e'(packet.pslverr) {

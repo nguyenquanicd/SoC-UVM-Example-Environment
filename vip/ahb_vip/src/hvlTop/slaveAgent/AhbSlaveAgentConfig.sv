@@ -9,18 +9,18 @@ class AhbSlaveAgentConfig extends uvm_object;
   
   bit hasCoverage;
 
-  bit [ADDR_WIDTH-1:0]maximumAddress;
+  bit [AHB_ADDR_WIDTH-1:0]maximumAddress;
 
-  bit [ADDR_WIDTH-1:0]minimumAddress;
+  bit [AHB_ADDR_WIDTH-1:0]minimumAddress;
   
   bit [7:0]slaveMemory[longint];
 
-  bit [DATA_WIDTH-1:0]haddr;
+  bit [AHB_DATA_WIDTH-1:0]haddr;
   rand int noOfWaitStates; 
 
   extern function new(string name = "AhbSlaveAgentConfig");
   extern function void do_print(uvm_printer printer);
-  extern virtual task slaveMemoryTask(bit [ADDR_WIDTH-1:0]slaveAddress, bit [DATA_WIDTH-1:0]data); 
+  extern virtual task slaveMemoryTask(bit [AHB_ADDR_WIDTH-1:0]slaveAddress, bit [AHB_DATA_WIDTH-1:0]data); 
 
 endclass : AhbSlaveAgentConfig
 
@@ -39,7 +39,7 @@ function void AhbSlaveAgentConfig::do_print(uvm_printer printer);
 
 endfunction : do_print
 
-task AhbSlaveAgentConfig::slaveMemoryTask(bit [ADDR_WIDTH-1:0]slaveAddress, bit [DATA_WIDTH-1:0]data); 
+task AhbSlaveAgentConfig::slaveMemoryTask(bit [AHB_ADDR_WIDTH-1:0]slaveAddress, bit [AHB_DATA_WIDTH-1:0]data); 
   slaveMemory[slaveAddress] = data;
 endtask : slaveMemoryTask
 

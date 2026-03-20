@@ -4,8 +4,8 @@
 class AhbMasterTransaction extends uvm_sequence_item;
   `uvm_object_utils(AhbMasterTransaction)
   
-  rand bit [ADDR_WIDTH-1:0] haddr;
-  rand bit [NO_OF_SLAVES-1:0] hselx;
+  rand bit [AHB_ADDR_WIDTH-1:0] haddr;
+  rand bit [AHB_NO_OF_SLAVES-1:0] hselx;
   rand ahbBurstEnum hburst;
   rand bit hmastlock;
   rand ahbProtectionEnum hprot;
@@ -14,10 +14,10 @@ class AhbMasterTransaction extends uvm_sequence_item;
   rand bit hexcl;
   rand bit [HMASTER_WIDTH-1:0] hmaster;
   rand ahbTransferEnum htrans;
-  rand bit [DATA_WIDTH-1:0] hwdata[$:2**LENGTH];
-  rand bit [(DATA_WIDTH/8)-1:0] hwstrb[$:2**LENGTH];
+  rand bit [AHB_DATA_WIDTH-1:0] hwdata[$:2**AHB_LENGTH];
+  rand bit [(AHB_DATA_WIDTH/8)-1:0] hwstrb[$:2**AHB_LENGTH];
   rand ahbOperationEnum hwrite;
-  bit [DATA_WIDTH-1:0] hrdata[$:2**LENGTH];
+  bit [AHB_DATA_WIDTH-1:0] hrdata[$:2**AHB_LENGTH];
   bit hreadyout;
   ahbRespEnum hresp;
   rand bit hexokay;

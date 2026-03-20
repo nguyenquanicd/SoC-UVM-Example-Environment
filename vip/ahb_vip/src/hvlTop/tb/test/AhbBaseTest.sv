@@ -30,8 +30,8 @@ endfunction : build_phase
 
 function void AhbBaseTest::setupAhbEnvironmentConfig();
   ahbEnvironmentConfig = AhbEnvironmentConfig::type_id::create("ahbEnvironmentConfig");
-  ahbEnvironmentConfig.noOfSlaves           = NO_OF_SLAVES;
-  ahbEnvironmentConfig.noOfMasters          = NO_OF_MASTERS;
+  ahbEnvironmentConfig.noOfSlaves           = AHB_NO_OF_SLAVES;
+  ahbEnvironmentConfig.noOfMasters          = AHB_NO_OF_MASTERS;
   ahbEnvironmentConfig.hasScoreboard        = 1;
   ahbEnvironmentConfig.hasVirtualSequencer  = 1;
   ahbEnvironmentConfig.operationMode        = WRITE_READ ;
@@ -67,7 +67,7 @@ endfunction : setupAhbEnvironmentConfig
 function void AhbBaseTest::setupAhbMasterAgentConfig();
   
   foreach(ahbEnvironmentConfig.ahbMasterAgentConfig[i]) begin
-    if(MASTER_AGENT_ACTIVE === 1) begin
+    if(AHB_AHB_MASTER_AGENT_ACTIVE === 1) begin
       ahbEnvironmentConfig.ahbMasterAgentConfig[i].is_active = uvm_active_passive_enum'(UVM_ACTIVE);
     end
     else begin
@@ -81,7 +81,7 @@ endfunction : setupAhbMasterAgentConfig
 function void AhbBaseTest::setupAhbSlaveAgentConfig();
   
   foreach(ahbEnvironmentConfig.ahbSlaveAgentConfig[i]) begin
-    if(SLAVE_AGENT_ACTIVE === 1) begin
+    if(AHB_SLAVE_AGENT_ACTIVE === 1) begin
       ahbEnvironmentConfig.ahbSlaveAgentConfig[i].is_active = uvm_active_passive_enum'(UVM_ACTIVE);
     end
     else begin

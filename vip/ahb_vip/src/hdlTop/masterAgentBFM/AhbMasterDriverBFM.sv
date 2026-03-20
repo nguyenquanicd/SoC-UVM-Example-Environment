@@ -4,7 +4,7 @@
 import AhbGlobalPackage::*;
 interface AhbMasterDriverBFM (input  bit   hclk,
                               input  bit   hresetn,
-                              output logic [ADDR_WIDTH-1:0] haddr,
+                              output logic [AHB_ADDR_WIDTH-1:0] haddr,
                               output logic [2:0] hburst,
                               output logic hmastlock,
                               output logic [HPROT_WIDTH-1:0] hprot,
@@ -14,14 +14,14 @@ interface AhbMasterDriverBFM (input  bit   hclk,
                               output logic [HMASTER_WIDTH-1:0] hmaster,
                               output logic [1:0] htrans,     
                               output logic hwrite,
-                              output logic [DATA_WIDTH-1:0] hwdata,
-                              output logic [(DATA_WIDTH/8)-1:0] hwstrb,
-                              input  logic [DATA_WIDTH-1:0] hrdata,
+                              output logic [AHB_DATA_WIDTH-1:0] hwdata,
+                              output logic [(AHB_DATA_WIDTH/8)-1:0] hwstrb,
+                              input  logic [AHB_DATA_WIDTH-1:0] hrdata,
                               input  logic hready,
                               input  logic hreadyout,
                               input  logic hresp,
                               input  logic hexokay,
-                              output logic [NO_OF_SLAVES-1:0] hselx
+                              output logic [AHB_NO_OF_SLAVES-1:0] hselx
                              );
 
   import AhbMasterPackage::*;
@@ -88,7 +88,7 @@ interface AhbMasterDriverBFM (input  bit   hclk,
 
   task driveBurstTransfer(inout ahbTransferCharStruct dataPacket,input ahbTransferConfigStruct configPacket);
     int burst_length;
-    automatic logic [ADDR_WIDTH-1:0] current_address = dataPacket.haddr;
+    automatic logic [AHB_ADDR_WIDTH-1:0] current_address = dataPacket.haddr;
     case (dataPacket.hburst)
       3'b010, 3'b011 : burst_length = 4;  // INCR4, WRAP4
       3'b100, 3'b101 : burst_length = 8;  // INCR8, WRAP8
@@ -139,15 +139,15 @@ interface AhbMasterDriverBFM (input  bit   hclk,
     `uvm_info(name, "Burst Transfer Completed, Bus in IDLE State", UVM_LOW);
   endtask
 
-  function logic [DATA_WIDTH-1:0] maskingStrobe(logic [DATA_WIDTH-1:0] data, logic [(DATA_WIDTH/8)-1:0] strobe);
-    logic [DATA_WIDTH-1:0] masked_data;
-    for (int j = 0; j < (DATA_WIDTH/8); j++) begin
+  function logic [AHB_DATA_WIDTH-1:0] maskingStrobe(logic [AHB_DATA_WIDTH-1:0] data, logic [(AHB_DATA_WIDTH/8)-1:0] strobe);
+    logic [AHB_DATA_WIDTH-1:0] masked_data;
+    for (int j = 0; j < (AHB_DATA_WIDTH/8); j++) begin
       masked_data[j*8 +: 8] = strobe[j] ? data[j*8 +: 8] : 8'h00;
     end
     return masked_data;
   endfunction
 
-  task driveBusyTransfer(inout ahbTransferCharStruct dataPacket, inout logic [ADDR_WIDTH-1:0] current_address);
+  task driveBusyTransfer(inout ahbTransferCharStruct dataPacket, inout logic [AHB_ADDR_WIDTH-1:0] current_address);
     htrans <= 2'b01;   // Busy transfer
     `uvm_info(name, $sformatf("Driving BUSY Transfer at Address: %0h", haddr), UVM_LOW);
     @(posedge hclk);

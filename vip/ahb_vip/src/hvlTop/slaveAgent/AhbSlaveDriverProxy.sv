@@ -85,7 +85,7 @@ endtask : run_phase
 task AhbSlaveDriverProxy::taskWrite(inout ahbTransferCharStruct structPacket);
   `uvm_info("DEBUG_NA", $sformatf("taskWrite"), UVM_HIGH); 
   
-  for(int i=0; i<(DATA_WIDTH/8); i++) begin
+  for(int i=0; i<(AHB_DATA_WIDTH/8); i++) begin
     `uvm_info("DEBUG_NA", $sformatf("task_write inside for loop :: %0d", i), UVM_HIGH);
     `uvm_info("DEBUG_NA", $sformatf("task_write inside for loop hwstrb = %0b", structPacket.hwstrb[i]), UVM_HIGH);
     
@@ -101,7 +101,7 @@ task AhbSlaveDriverProxy::taskRead(inout ahbTransferCharStruct structPacket);
 
   `uvm_info("DEBUG_NA", $sformatf("task_read"), UVM_HIGH);
   
-  for(int i=0; i<(DATA_WIDTH/8); i++) begin
+  for(int i=0; i<(AHB_DATA_WIDTH/8); i++) begin
     if(ahbSlaveAgentConfig.slaveMemory.exists(structPacket.haddr)) begin
       structPacket.hrdata[8*i+7 -: 8] = ahbSlaveAgentConfig.slaveMemory[structPacket.haddr + i];
       memoryExist = 1;

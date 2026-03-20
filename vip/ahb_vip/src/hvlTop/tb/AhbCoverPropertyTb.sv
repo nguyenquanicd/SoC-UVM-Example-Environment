@@ -10,8 +10,8 @@ import uvm_pkg::*;
 module AhbCoverPropertyTb;
   reg                      hclk;
   reg                      hresetn;
-  reg     [ADDR_WIDTH-1:0] haddr;
-  reg     [DATA_WIDTH-1:0] hwdata;
+  reg     [AHB_ADDR_WIDTH-1:0] haddr;
+  reg     [AHB_DATA_WIDTH-1:0] hwdata;
   reg                [2:0] hsize;
   reg                [2:0] hburst;
   reg                [1:0] htrans;
@@ -24,11 +24,11 @@ module AhbCoverPropertyTb;
   reg                      hmastlock;
   reg                      htransValid;
   reg                      hreadyout;
-  reg     [DATA_WIDTH-1:0] hrdata;
-  reg   [NO_OF_SLAVES-1:0] hselx;
+  reg     [AHB_DATA_WIDTH-1:0] hrdata;
+  reg   [AHB_NO_OF_SLAVES-1:0] hselx;
   reg                      hexokay;
-  reg [(DATA_WIDTH/8)-1:0] hwstrb ;
-  reg     [DATA_WIDTH-1:0] hwdataValid;
+  reg [(AHB_DATA_WIDTH/8)-1:0] hwstrb ;
+  reg     [AHB_DATA_WIDTH-1:0] hwdataValid;
 
   string name = "AhbCoverPropertyTb";
 
