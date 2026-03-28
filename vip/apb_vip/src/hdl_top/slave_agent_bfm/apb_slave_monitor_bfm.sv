@@ -19,7 +19,7 @@ interface apb_slave_monitor_bfm (input bit pclk,
                                  input bit pready,
                                  input logic penable,
                                  input logic pwrite,
-                                 input logic [ADDRESS_WIDTH-1:0]paddr,
+                                 input logic [APB_ADDRESS_WIDTH-1:0]paddr,
                                  input logic [APB_DATA_WIDTH-1:0]pwdata,
                                  input logic [(APB_DATA_WIDTH/8)-1:0]pstrb, 
                                  input logic [APB_DATA_WIDTH-1:0]prdata

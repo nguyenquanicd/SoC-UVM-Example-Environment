@@ -23,34 +23,34 @@ class apb_master_agent_config extends uvm_object;
 
   //Variable: master_memory
   //Memory decleration for master to store the data of each slave
-  bit [ADDRESS_WIDTH-1:0]paddr;
+  bit [APB_ADDRESS_WIDTH-1:0]paddr;
 
   //Variable : master_memory
   //Used to store all the data from the slaves
   //Each location of the master memory stores 8 bit data
-  bit [APB_MEMORY_WIDTH-1:0]master_memory[(APB_SLAVE_MEMORY_SIZE+APB_SLAVE_MEMORY_GAP)*NO_OF_SLAVES:0];
+  bit [APB_MEMORY_WIDTH-1:0]master_memory[(APB_SLAVE_MEMORY_SIZE+APB_SLAVE_MEMORY_GAP)*APB_NO_OF_SLAVES:0];
 
   //Variable : master_min_array
   //An associative array used to store the min address ranges of every slave
   //Index - type    - int
   //        stores  - slave number
   //Value - stores the minimum address range of that slave.
-  bit [ADDRESS_WIDTH-1:0]master_min_addr_range_array[int];
+  bit [APB_ADDRESS_WIDTH-1:0]master_min_addr_range_array[int];
 
   //Variable : master_max_array
   //An associative array used to store the max address ranges of every slave
   //Index - type    - int
   //        stores  - slave number
   //Value - stores the maximum address range of that slave.
-  bit [ADDRESS_WIDTH-1:0]master_max_addr_range_array[int];
+  bit [APB_ADDRESS_WIDTH-1:0]master_max_addr_range_array[int];
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
   extern function new(string name = "apb_master_agent_config");
   extern function void do_print(uvm_printer printer);
-  extern function void master_min_addr_range(int slave_number, bit [ADDRESS_WIDTH-1:0]slave_min_address_range);
-  extern function void master_max_addr_range(int slave_number, bit [ADDRESS_WIDTH-1:0]slave_max_address_range);
+  extern function void master_min_addr_range(int slave_number, bit [APB_ADDRESS_WIDTH-1:0]slave_min_address_range);
+  extern function void master_max_addr_range(int slave_number, bit [APB_ADDRESS_WIDTH-1:0]slave_max_address_range);
 
 endclass : apb_master_agent_config
 
@@ -94,7 +94,7 @@ endfunction : do_print
 //  slave_number            - int
 //  slave_max_address_range - bit [63:0]
 //--------------------------------------------------------------------------------------------
-function void apb_master_agent_config::master_max_addr_range(int slave_number, bit[ADDRESS_WIDTH-1:0]slave_max_address_range);
+function void apb_master_agent_config::master_max_addr_range(int slave_number, bit[APB_ADDRESS_WIDTH-1:0]slave_max_address_range);
   master_max_addr_range_array[slave_number] = slave_max_address_range;
 endfunction : master_max_addr_range
 
@@ -105,7 +105,7 @@ endfunction : master_max_addr_range
 //  slave_number            - int
 //  slave_min_address_range - bit [63:0]
 //--------------------------------------------------------------------------------------------
-function void apb_master_agent_config::master_min_addr_range(int slave_number, bit[ADDRESS_WIDTH-1:0]slave_min_address_range);
+function void apb_master_agent_config::master_min_addr_range(int slave_number, bit[APB_ADDRESS_WIDTH-1:0]slave_min_address_range);
   master_min_addr_range_array[slave_number] = slave_min_address_range;
 endfunction : master_min_addr_range
 

@@ -27,11 +27,11 @@ class apb_slave_agent_config extends uvm_object;
 
   //Variable: max_address
   //Used to store the maximum address value of this slave
-  bit [ADDRESS_WIDTH-1:0]max_address;
+  bit [APB_ADDRESS_WIDTH-1:0]max_address;
 
   //Variable: min_address
   //Used to store the minimum address value of this slave
-  bit [ADDRESS_WIDTH-1:0]min_address;
+  bit [APB_ADDRESS_WIDTH-1:0]min_address;
   
   //Variable: slave_memory
   //Declaration of slave_memory to store the data from master
@@ -46,7 +46,7 @@ class apb_slave_agent_config extends uvm_object;
   //-------------------------------------------------------
   extern function new(string name = "apb_slave_agent_config");
   extern function void do_print(uvm_printer printer);
-  extern virtual task slave_memory_task(bit [ADDRESS_WIDTH-1:0]slave_address, bit [APB_DATA_WIDTH-1:0]data); 
+  extern virtual task slave_memory_task(bit [APB_ADDRESS_WIDTH-1:0]slave_address, bit [APB_DATA_WIDTH-1:0]data); 
 
 endclass : apb_slave_agent_config
 
@@ -80,10 +80,10 @@ endfunction : do_print
 //  Used to store the slave data into the slave memory
 // 
 // Parameters :
-//  slave_address   - bit [ADDRESS_WIDTH-1:0]
+//  slave_address   - bit [APB_ADDRESS_WIDTH-1:0]
 //  data            - bit [APB_DATA_WIDTH-1:0]
 //--------------------------------------------------------------------------------------------
-task apb_slave_agent_config::slave_memory_task(bit [ADDRESS_WIDTH-1:0]slave_address, bit [APB_DATA_WIDTH-1:0]data);
+task apb_slave_agent_config::slave_memory_task(bit [APB_ADDRESS_WIDTH-1:0]slave_address, bit [APB_DATA_WIDTH-1:0]data);
   slave_memory[slave_address] = data;
 endtask : slave_memory_task
 

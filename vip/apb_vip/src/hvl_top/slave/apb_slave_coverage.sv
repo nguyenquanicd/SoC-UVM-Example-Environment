@@ -28,7 +28,7 @@ class apb_slave_coverage extends uvm_subscriber#(apb_slave_tx);
 
   PSELX_CP : coverpoint packet.psel {
     option.comment = "no.of slaves used ";
-    bins NO_OF_SLAVES[] = {1};
+    bins APB_NO_OF_SLAVES[] = {1};
   }
 
   PADDR_CP : coverpoint cfg.paddr {

@@ -92,7 +92,8 @@ endfunction : end_of_elaboration_phase
 // phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task apb_master_driver_proxy::run_phase(uvm_phase phase);
-  
+ 
+	$display ("ENTER APB DRIVER RUN_PHASE");
   //wait for system reset
   apb_master_drv_bfm_h.wait_for_preset_n();
 

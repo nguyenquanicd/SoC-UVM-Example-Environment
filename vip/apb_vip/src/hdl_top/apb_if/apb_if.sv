@@ -14,7 +14,7 @@ interface apb_if (input pclk, input preset_n);
   
   //Variable : pselx
   //Used to select the slave
-  logic [NO_OF_SLAVES-1:0]pselx;
+  logic [APB_NO_OF_SLAVES-1:0]pselx;
 
   //Variable : penable
   //Used to write data when penable is high
@@ -22,7 +22,7 @@ interface apb_if (input pclk, input preset_n);
 
   //Variable : paddr
   //Address selected in apb_slave
-  logic [ADDRESS_WIDTH-1:0]paddr;
+  logic [APB_ADDRESS_WIDTH-1:0]paddr;
 
   //Variable : pwrite
   //Write when pwrite is 1 and read is 0

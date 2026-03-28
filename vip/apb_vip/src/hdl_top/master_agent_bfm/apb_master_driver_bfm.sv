@@ -19,8 +19,8 @@ interface apb_master_driver_bfm (input  bit   pclk,
                                  output logic [2:0]pprot,
                                  output logic penable,
                                  output logic pwrite,
-                                 output logic [ADDRESS_WIDTH-1:0]paddr,
-                                 output logic [NO_OF_SLAVES-1:0]pselx,
+                                 output logic [APB_ADDRESS_WIDTH-1:0]paddr,
+                                 output logic [APB_NO_OF_SLAVES-1:0]pselx,
                                  output logic [APB_DATA_WIDTH-1:0]pwdata,
                                  output logic [(APB_DATA_WIDTH/8)-1:0]pstrb
                                 );

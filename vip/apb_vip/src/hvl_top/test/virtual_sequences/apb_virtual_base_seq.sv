@@ -45,7 +45,7 @@ endfunction : new
 //  name - apb_virtual_base_seq
 //--------------------------------------------------------------------------------------------
 task apb_virtual_base_seq::body();
-  apb_slave_seqr_h = new[NO_OF_SLAVES];
+  apb_slave_seqr_h = new[APB_NO_OF_SLAVES];
   if(!$cast(p_sequencer,m_sequencer))begin
     `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
   end

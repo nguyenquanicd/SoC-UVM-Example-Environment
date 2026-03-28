@@ -9,20 +9,20 @@ package apb_global_pkg;
 
   //Parameter : NO_OF_SLAVES
   //Used to set number of slaves required
-  parameter int NO_OF_SLAVES = 1;
+  parameter int APB_NO_OF_SLAVES = 1;
 
   //Parameter : MASTER_AGENT_ACTIVE
   //Used to set the master agent either active or passive
-  parameter bit MASTER_AGENT_ACTIVE = 1;
+  parameter bit APB_MASTER_AGENT_ACTIVE = 1;
 
   //Parameter : APB_SLAVE_AGENT_ACTIVE
   //Used to set the slave agent either active or passive
   parameter bit APB_SLAVE_AGENT_ACTIVE = 1;
 
-  //Parameter : ADDRESS_WIDTH
+  //Parameter : APB_ADDRESS_WIDTH
   //Used to set the address width to the address bus
   //Maximum Value is 32
-  parameter int ADDRESS_WIDTH = 32;
+  parameter int APB_ADDRESS_WIDTH = 32;
 
   //Parameter : APB_DATA_WIDTH
   //Used to set the data width 
@@ -140,10 +140,10 @@ package apb_global_pkg;
     bit pwrite;
     bit pslverr;
     bit [2:0]pprot;
-    bit [NO_OF_SLAVES-1:0]pselx;
+    bit [APB_NO_OF_SLAVES-1:0]pselx;
     bit [(APB_DATA_WIDTH/8)-1:0]pstrb;
     bit [APB_DATA_WIDTH-1:0]prdata;
-    bit [ADDRESS_WIDTH-1:0]paddr; 
+    bit [APB_ADDRESS_WIDTH-1:0]paddr; 
     bit [APB_DATA_WIDTH-1:0]pwdata;
     int no_of_wait_states;
   }apb_transfer_char_s;
@@ -154,9 +154,9 @@ package apb_global_pkg;
   //  which are used for seq item conversion
   //-------------------------------------------------------
   typedef struct{
-    bit [ADDRESS_WIDTH-1:0]min_address;
-    bit [ADDRESS_WIDTH-1:0]max_address;
-    bit [ADDRESS_WIDTH-1:0]paddr;
+    bit [APB_ADDRESS_WIDTH-1:0]min_address;
+    bit [APB_ADDRESS_WIDTH-1:0]max_address;
+    bit [APB_ADDRESS_WIDTH-1:0]paddr;
     int slave_id;
   }apb_transfer_cfg_s;
 

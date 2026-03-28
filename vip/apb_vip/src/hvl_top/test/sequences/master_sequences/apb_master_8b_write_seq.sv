@@ -10,7 +10,7 @@ class apb_master_8b_write_seq extends apb_master_base_seq;
   
   //Variable: address
   //Used to store the address to pass to the write and read sequence 
-  rand bit [ADDRESS_WIDTH-1:0]address_seq;
+  rand bit [APB_ADDRESS_WIDTH-1:0]address_seq;
   
   //Variable: cont_write_read
   //Used to count the writes and reads 

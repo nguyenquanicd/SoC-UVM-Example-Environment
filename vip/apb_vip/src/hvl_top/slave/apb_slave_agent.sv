@@ -84,12 +84,12 @@ function void apb_slave_agent::connect_phase(uvm_phase phase);
   if(apb_slave_agent_cfg_h.is_active == UVM_ACTIVE) begin
     apb_slave_drv_proxy_h.apb_slave_agent_cfg_h = apb_slave_agent_cfg_h;
     apb_slave_seqr_h.apb_slave_agent_cfg_h = apb_slave_agent_cfg_h;
-    apb_slave_cov_h.apb_slave_agent_cfg_h = apb_slave_agent_cfg_h;
+    //apb_slave_cov_h.apb_slave_agent_cfg_h = apb_slave_agent_cfg_h;
     
     //Connecting the ports
     apb_slave_drv_proxy_h.seq_item_port.connect(apb_slave_seqr_h.seq_item_export);
     //Connecting monitor_proxy port to coverage export
-    apb_slave_mon_proxy_h.apb_slave_analysis_port.connect(apb_slave_cov_h.analysis_export);
+    //apb_slave_mon_proxy_h.apb_slave_analysis_port.connect(apb_slave_cov_h.analysis_export);
   end
 
   //Passing the slave agent config to the slave driver proxy

@@ -11,7 +11,7 @@
 
   //Variable: paddr
   //Address selected in apb_slave
-  rand bit [ADDRESS_WIDTH-1:0] paddr;
+  rand bit [APB_ADDRESS_WIDTH-1:0] paddr;
 
   //Variable: pprot
   //Used for different access
@@ -58,7 +58,7 @@
   rand bit cont_write_read;
  
   //Variable : address
-  bit [ADDRESS_WIDTH-1:0]address;
+  bit [APB_ADDRESS_WIDTH-1:0]address;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -74,7 +74,7 @@
   //-------------------------------------------------------
   constraint pselx_c1  { $countones(pselx) == 1; }
 
-  constraint pselx_c2 { pselx >0 && pselx < 2**NO_OF_SLAVES; }
+  constraint pselx_c2 { pselx >0 && pselx < 2**APB_NO_OF_SLAVES; }
 
   constraint pwdata_c3 { soft pwdata inside {[0:100]}; }
 
@@ -184,7 +184,7 @@ function void apb_master_tx::post_randomize();
   int index;
 
   // Derive the slave number using the index
-  for(int i=0; i<NO_OF_SLAVES; i++) begin
+  for(int i=0; i<APB_NO_OF_SLAVES; i++) begin
     if(pselx[i]) begin
       index = i;
     end

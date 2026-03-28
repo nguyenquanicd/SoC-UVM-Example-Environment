@@ -98,7 +98,7 @@ endclass : apb_scoreboard
 function apb_scoreboard::new(string name = "apb_scoreboard",uvm_component parent = null);
   super.new(name, parent);
   apb_master_analysis_fifo = new("apb_master_analysis_fifo",this);
-  apb_slave_analysis_fifo = new[NO_OF_SLAVES];
+  apb_slave_analysis_fifo = new[APB_NO_OF_SLAVES];
   
   foreach(apb_slave_analysis_fifo[i]) begin
     apb_slave_analysis_fifo[i] = new($sformatf("apb_slave_analysis_fifo[%0d]",i),this);
@@ -136,7 +136,7 @@ task apb_scoreboard::run_phase(uvm_phase phase);
   `uvm_info(get_type_name(),$sformatf("printing apb_master_tx_h, \n %s",apb_master_tx_h.sprint()),UVM_HIGH)
   `uvm_info(get_type_name(),$sformatf("before calling slave's analysis_fifo"),UVM_HIGH)
   
-  for(int i=0;i<NO_OF_SLAVES;i++) begin
+  for(int i=0;i<APB_NO_OF_SLAVES;i++) begin
     if(apb_master_tx_h.pselx[i]==1) begin
       index = i;
       break;
