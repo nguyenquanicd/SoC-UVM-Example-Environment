@@ -10,7 +10,7 @@ set run_dir = ""
 #set date0 = date + '%Y%h%d %R:%S'
 set run_string = "$0 $argv"
 
-set test_name = ""
+set test_name = "soc_base_test_c"
 set fsdb = ""
 set synthesis = "+define+SYNTHESIS"
 set coverage = ""
@@ -155,8 +155,7 @@ echo $run_string >> commands.log
   ./simv \
     +UVM_NO_RELNOTES \
     +UVM_VERBOSITY=UVM_MEDIUM \
-    +UVM_TESTNAME=soc_base_test_c \
-    +uvm_set_type_override=soc_base_vseq_c,$test_name \
+    +UVM_TESTNAME=$test_name \
     -cm_dir simv.vdb \
     -l run.log \
     $vsim_opts \

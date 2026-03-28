@@ -26,6 +26,23 @@
     ├── spi_vip
     └── uart_vip
 
+//Testbench structure
+========================tb_top======================
+					            
+||=================||      ||=================||
+|| APB Master VIP  || <==> || APB Slave VIP   ||
+||=================||      ||=================||
+
+||=================||      ||=================||
+|| AHB Master VIP  || <==> || AHB Slave VIP   ||
+||=================||      ||=================||
+
+||=================||      ||=================||
+|| AXI Master VIP  || <==> || AXI Slave VIP   ||
+||=================||      ||=================||
+
+====================================================
+
 //How to run
 1. run.csh -compile rtl +define+<user_option> (run 1 time whenever RTL change)
 Example: 
@@ -33,6 +50,12 @@ run.csh -compile rtl +define+SYNTHESIS
 2. run.csh -compile dv +define+<user_option> (run 1 time whenever DV change)
 Example:
 run.csh -compile dv +define+DMA_STUB
-3. run.csh -test <user_seq_name> -run_dir <user_outfeed> -fsdb (waveform option) -seed (random seed option) +<user_runtime_option>
+3. run.csh -test <user_test_name> -run_dir <user_outfeed> -fsdb (waveform option) -seed (random seed option) +<user_runtime_option>
 Example:
-run.csh -test soc_base_vseq_c -run_dir outfeed_base_vseq -fsdb -seed 1234 +DMA_APB_VIP_ACTIVE
+run.csh -test soc_base_test_c -run_dir outfeed_base_test -fsdb -seed 1234 +DMA_APB_VIP_ACTIVE
+
+//How to make your own test
+1. Create your new test which derived from soc_base_test_c
+2. Include in test/soc_test_pkg.sv
+3. Refer vip_seq in vip dir to select correct seq for your test purpose or you can create new seq derived from them
+4. Override run_phase and start your own seq with corresponding sequencer
