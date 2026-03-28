@@ -59,7 +59,7 @@ while ($#argv > $VarNum)
       set coverage = "-cm tgl+line+branch+fsm+cond"
       breaksw
     default:
-      if ("$argv[1]" =~ "+*") then
+      if (`echo $argv[1] | cut -b 1` == "+") then
         set plusarg = "$plusarg $argv[1]"
       endif
       shift
@@ -70,7 +70,7 @@ end
 echo $plusarg
 
 set common_opts = "-full64 -sverilog -debug_access+all -diag timescale -timescale=1ns/1ps -kdb=common_elab -ntb_opts uvm-1.2 $cell"
-set vlogan_opts = "$common_opts $coverage $synthesis "
+set vlogan_opts = "$common_opts $coverage $synthesis $plusarg"
 set vcs_opts    = "$common_opts $coverage -allxmrs -lca -assert svaext -reportstats +nospecify"
 set vsim_opts   = "$coverage $fsdb $seed $plusarg +vcs+lic+wait"
 
@@ -88,8 +88,15 @@ vlogan\
 $vlogan_opts \
 -xlrm env_expand \
 -F $TB_HOME/filelist_rtl.f \
--l vlogan_log.log \
+-l rtl_vlogan_log.log \
 -work CMP_RTL
+
+vlogan\
+$vlogan_opts \
+-xlrm env_expand \
+-F $TB_HOME/filelist_stub.f \
+-l stub_vlogan_log.log \
+-work CMP_STUB
 
 endif
 
@@ -106,20 +113,29 @@ if ($compile == "dv") then
   -work CMP_DV
 
   vlogan\
-  -l vlogan_log.log \
+  -l dv_vlogan_log.log \
   -xlrm env_expand \
   -ntb_opts uvm-1.2 \
   -f $TB_HOME/filelist_dv.f \
   $vlogan_opts \
   -work CMP_DV
 
+  vlogan\
+  -l cfg_vlogan_log.log \
+  -xlrm env_expand \
+  -ntb_opts uvm-1.2 \
+  $vlogan_opts \
+  $TB_HOME/dut/dut_config.sv\
+
  vcs \
- tb_top \
+ dut_config \
  -partcomp \
  -ntb_opts uvm-1.2 \
  -allxmrs \
  -l vcs_log.log \
  $vcs_opts \
+
+echo "Debug: $plusarg"
 
 endif
 

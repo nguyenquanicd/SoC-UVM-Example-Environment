@@ -59,3 +59,13 @@ run.csh -test soc_base_test_c -run_dir outfeed_base_test -fsdb -seed 1234 +DMA_A
 2. Include in test/soc_test_pkg.sv
 3. Refer vip_seq in vip dir to select correct seq for your test purpose or you can create new seq derived from them
 4. Override run_phase and start your own seq with corresponding sequencer
+
+//How to use IP stub option
+1. Add your stub file in filelist_stub.f
+2. Modify dut/dut_config.sv add more stub option depends on your DUT using macro `SELECT_LIB(<module_name>)
+Example:
+`SELECT_LIB(AES128)
+3. run compile dv step with your IP you want to stub
+Example:
+run.csh -compile dv +define+AES128_STUB
+*Note: If you don't compile with stub option, IP will be selected in RTL_LIB as default
